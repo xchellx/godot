@@ -70,3 +70,25 @@ for more info.
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/bfiihqq6byxsjxxh/branch/master?svg=true)](https://ci.appveyor.com/project/akien-mga/godot)
 [![Code Triagers Badge](https://www.codetriage.com/godotengine/godot/badges/users.svg)](https://www.codetriage.com/godotengine/godot)
 [![Translate on Weblate](https://hosted.weblate.org/widgets/godot-engine/-/godot/svg-badge.svg)](https://hosted.weblate.org/engage/godot-engine/?utm_source=widget)
+
+### Nintendo Wii Export Template
+This specific fork has the ability to export for the Nintendo Wii. Support for this is minimal right now. The code changes are mirrored from [TGRCDev/godot_wii](https://git.tgrc.dev/TGRCDev/godot_wii/). Any exported game is meant to work with [Homebrew Channel](https://wiibrew.org/wiki/Homebrew_Channel). However, you can also boot the executable from [Dolphin Emulator](https://github.com/dolphin-emu/dolphin).
+
+####What is not supported:
+- Embedded pck
+- Mono (C#)
+- Different GX texture formats (only GX RGBA8 is supported for now)
+- `PoolByteArray` GDScript class (it is not 32byte aligned yet)
+- No Nintendo Wii specific API for GDScript (yet)
+- Potentially more things which haven't been tested yet
+
+#### Compiling the Nintendo Wii export template
+- `export DEVKITPRO=DEVKITPROPATH`
+- pass `dkp_path=DEVKITPROPATH` to SCONS when building.
+- `DEVKITPROPATH` should be where devkitPro was installed to, for example: `"/opt/devkitpro"`.
+
+For instructions on installing devkitPro see [Getting Started - devkitPro](https://devkitpro.org/wiki/Getting_Started) and [devkitPro pacman - devkitPro](https://devkitpro.org/wiki/devkitPro_pacman). The packages required are `devkitPPC`, `gamecube-tools`, `libogc`, `libfat-ogc`, `ppc-freetype`, `ppc-libpng`, and `ppc-zlib`. If you meet the dependency requirements for the wii platform, `scons platform=list` will show `wii` in the list.
+
+Here is the command I use `scons platform=wii tools=no target=release bits=32 use_mingw=yes dkp_path=/opt/devkitpro -j6` for both `target=release` and `target=debug`.
+
+*These instructions were written in assumption that you are using MSYS2.*
