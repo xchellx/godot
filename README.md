@@ -74,7 +74,7 @@ for more info.
 ### Nintendo Wii Export Template
 This specific fork has the ability to export for the Nintendo Wii. Support for this is minimal right now. The code changes are mirrored from [TGRCDev/godot_wii](https://git.tgrc.dev/TGRCDev/godot_wii/). Any exported game is meant to work with [Homebrew Channel](https://wiibrew.org/wiki/Homebrew_Channel). However, you can also boot the executable from [Dolphin Emulator](https://github.com/dolphin-emu/dolphin).
 
-####What is not supported:
+#### What is not supported:
 - Embedded pck
 - Mono (C#)
 - Different GX texture formats (only GX RGBA8 is supported for now)
